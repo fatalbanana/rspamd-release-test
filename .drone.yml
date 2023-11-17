@@ -1,0 +1,318 @@
+---
+{
+   "kind": "pipeline",
+   "name": "debian_bookworm_amd64",
+   "platform": {
+      "arch": "amd64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "debian:bookworm",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "kind": "pipeline",
+   "name": "debian_bookworm_arm64",
+   "platform": {
+      "arch": "arm64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "debian:bookworm",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "kind": "pipeline",
+   "name": "debian_bullseye_amd64",
+   "platform": {
+      "arch": "amd64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "debian:bullseye",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "kind": "pipeline",
+   "name": "debian_bullseye_arm64",
+   "platform": {
+      "arch": "arm64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "debian:bullseye",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "kind": "pipeline",
+   "name": "ubuntu_focal_amd64",
+   "platform": {
+      "arch": "amd64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "ubuntu:focal",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "kind": "pipeline",
+   "name": "ubuntu_focal_arm64",
+   "platform": {
+      "arch": "arm64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "ubuntu:focal",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "kind": "pipeline",
+   "name": "ubuntu_jammy_amd64",
+   "platform": {
+      "arch": "amd64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "ubuntu:jammy",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "kind": "pipeline",
+   "name": "ubuntu_jammy_arm64",
+   "platform": {
+      "arch": "arm64",
+      "os": "linux"
+   },
+   "steps": [
+      {
+         "commands": [
+            "apt-get update",
+            "apt-get install -y lsb-release wget gpg",
+            "mkdir -p /etc/apt/keyrings",
+            "wget -O- https://rspamd.com/apt-stable/gpg.key | gpg --dearmor > /etc/apt/keyrings/rspamd.gpg",
+            "echo \"deb [signed-by=/etc/apt/keyrings/rspamd.gpg] http://rspamd.com/apt-stable/ `lsb_release -c -s` main\" > /etc/apt/sources.list.d/rspamd.list",
+            "apt-get update",
+            "apt-get --no-install-recommends install -y rspamd",
+            "apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server",
+            "python3 -mvenv $DRONE_WORKSPACE/venv",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0\"",
+            "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
+            "git clone https://github.com/rspamd/rspamd.git",
+            "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
+            "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
+         ],
+         "image": "ubuntu:jammy",
+         "name": "test"
+      }
+   ],
+   "trigger": {
+      "event": [
+         "custom",
+         "pull_request",
+         "push"
+      ]
+   },
+   "type": "docker"
+}
+---
+{
+   "hmac": "0000000000000000000000000000000000000000000000000000000000000000",
+   "kind": "signature"
+}
+...
