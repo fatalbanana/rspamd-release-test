@@ -36,8 +36,9 @@ local install_rspamd_debian = [
   'apt-get --no-install-recommends install -y rspamd',
 ];
 
-local test_deps_debian = [
-  'apt-get install -y git miltertest python3 python3-dev python3-pip python3-venv redis-server',
+local test_deps_debian(family, codename) = [
+  local miltertest = if family == 'ubuntu' && codename == 'focal' then '' else 'miltertest ';
+  'apt-get install -y git ' + miltertest + 'python3 python3-dev python3-pip python3-venv redis-server',
 ];
 
 local test_preparation_generic = [
@@ -47,8 +48,9 @@ local test_preparation_generic = [
   'git clone https://github.com/rspamd/rspamd.git',
 ];
 
-local run_tests_generic = [
-  'RSPAMD_INSTALLROOT=/usr bash -c "source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases"',
+local run_tests_generic(family, codename) = [
+  local exclude_milter = if family == 'ubuntu' && codename == 'focal' then '--exclude milter ' else '';
+  'RSPAMD_INSTALLROOT=/usr bash -c "source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken ' + exclude_milter + '$DRONE_WORKSPACE/rspamd/test/functional/cases"',
 ];
 
 local debian_pipeline(family, codename, arch) = {
@@ -57,7 +59,7 @@ local debian_pipeline(family, codename, arch) = {
     {
       name: 'test',
       image: std.format('%s:%s', [family, codename]),
-      commands: install_rspamd_debian + test_deps_debian + test_preparation_generic + git_reset_debian + run_tests_generic,
+      commands: install_rspamd_debian + test_deps_debian(family, codename) + test_preparation_generic + git_reset_debian + run_tests_generic(family, codename),
     },
   ],
 } + platform(arch) + default_trigger + docker_pipeline;
