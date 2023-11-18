@@ -20,10 +20,41 @@ local platform(arch) = {
   },
 };
 
+local tampering = [
+  |||
+   bash -c 'cd $DRONE_WORKSPACE/rspamd &&
+   git cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&
+   git cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&
+   git cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&
+   git cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&
+   git cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&
+   git cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&
+   git apply $DRONE_WORKSPACE/patch1.diff &&
+   git apply $DRONE_WORKSPACE/patch2.diff'
+  |||,
+];
+
 local git_reset_debian = [
   |||
     bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed "s/~$${CODENAME}//g" | sed "s/.*~//g"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'
   |||,
+] + tampering;
+
+local git_reset_el = [
+  |||
+    bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'
+  |||,
+] + tampering;
+
+local install_epel(family, epel_version) = [
+  local extra_step = if family != 'oraclelinux' && epel_version == '9' then 'dnf -y install "dnf-command(config-manager)" && dnf config-manager --set-enabled crb' else if family != 'oraclelinux' && epel_version == '8' then 'dnf -y install "dnf-command(config-manager)" && dnf config-manager --set-enabled powertools' else '';
+  extra_step,
+  if epel_version == '7' then 'yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm' else 'dnf -y install epel-release',
+];
+
+local install_rspamd_el(el_version) = [
+  'curl https://rspamd.com/rpm-stable/centos-' + el_version + '/rspamd.repo > /etc/yum.repos.d/rspamd.repo',
+  'yum -y install rspamd',
 ];
 
 local install_rspamd_debian = [
@@ -41,6 +72,10 @@ local test_deps_debian(family, codename) = [
   'apt-get install -y git ' + miltertest + 'python3 python3-dev python3-pip python3-venv redis-server',
 ];
 
+local test_deps_el = [
+  'yum -y install gcc git python3 python3-devel python3-pip redis',
+];
+
 local test_preparation_generic = [
   'python3 -mvenv $DRONE_WORKSPACE/venv',
   'bash -c "source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0"',  // https://github.com/dmeranda/demjson/issues/43
@@ -49,8 +84,9 @@ local test_preparation_generic = [
 ];
 
 local run_tests_generic(family, codename) = [
-  local exclude_milter = if family == 'ubuntu' && codename == 'focal' then '--exclude milter ' else '';
-  'RSPAMD_INSTALLROOT=/usr bash -c "source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken ' + exclude_milter + '$DRONE_WORKSPACE/rspamd/test/functional/cases"',
+  local exclude_milter = if (family == 'ubuntu' && codename == 'focal') || family == 'oraclelinux' then '--exclude milter ' else '';
+  local var_rspamd_group = if family != 'debian' && family != 'ubuntu' then '--variable RSPAMD_GROUP:nobody ' else '';
+  'RSPAMD_INSTALLROOT=/usr bash -c "source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot ' + var_rspamd_group + '--removekeywords wuks --exclude isbroken ' + exclude_milter + '$DRONE_WORKSPACE/rspamd/test/functional/cases"',
 ];
 
 local debian_pipeline(family, codename, arch) = {
@@ -60,6 +96,17 @@ local debian_pipeline(family, codename, arch) = {
       name: 'test',
       image: std.format('%s:%s', [family, codename]),
       commands: install_rspamd_debian + test_deps_debian(family, codename) + test_preparation_generic + git_reset_debian + run_tests_generic(family, codename),
+    },
+  ],
+} + platform(arch) + default_trigger + docker_pipeline;
+
+local el_pipeline(family, el_version, arch) = {
+  name: std.format('%s_%s_%s', [family, el_version, arch]),
+  steps: [
+    {
+      name: 'test',
+      image: std.format('%s:%s', [family, el_version]),
+      commands: install_epel(family, el_version) + install_rspamd_el(el_version) + test_deps_el + test_preparation_generic + git_reset_el + run_tests_generic(family, el_version),
     },
   ],
 } + platform(arch) + default_trigger + docker_pipeline;
@@ -74,6 +121,20 @@ local debian_pipeline(family, codename, arch) = {
   debian_pipeline('ubuntu', 'focal', 'arm64'),
   debian_pipeline('ubuntu', 'jammy', 'amd64'),
   debian_pipeline('ubuntu', 'jammy', 'arm64'),
+  el_pipeline('oraclelinux', '7', 'amd64'),
+  el_pipeline('oraclelinux', '7', 'arm64'),
+  el_pipeline('oraclelinux', '8', 'amd64'),
+  el_pipeline('oraclelinux', '8', 'arm64'),
+  el_pipeline('oraclelinux', '9', 'amd64'),
+  el_pipeline('oraclelinux', '9', 'arm64'),
+  el_pipeline('almalinux', '8', 'amd64'),
+  el_pipeline('almalinux', '8', 'arm64'),
+  el_pipeline('almalinux', '9', 'amd64'),
+  el_pipeline('almalinux', '9', 'arm64'),
+  el_pipeline('rockylinux', '8', 'amd64'),
+  el_pipeline('rockylinux', '8', 'arm64'),
+  el_pipeline('rockylinux', '9', 'amd64'),
+  el_pipeline('rockylinux', '9', 'arm64'),
   {
     kind: 'signature',
     hmac: '0000000000000000000000000000000000000000000000000000000000000000',
