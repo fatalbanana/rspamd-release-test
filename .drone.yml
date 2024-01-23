@@ -22,7 +22,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "debian:bookworm",
@@ -62,7 +61,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "debian:bookworm",
@@ -102,7 +100,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "debian:bullseye",
@@ -142,7 +139,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "debian:bullseye",
@@ -182,7 +178,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "ubuntu:focal",
@@ -222,7 +217,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "ubuntu:focal",
@@ -262,7 +256,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "ubuntu:jammy",
@@ -302,7 +295,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'export CODENAME=`lsb_release -c -s` && export COMMIT_HASH=`dpkg-query -W rspamd | sed \"s/~$${CODENAME}//g\" | sed \"s/.*~//g\"` && cd $DRONE_WORKSPACE/rspamd && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "ubuntu:jammy",
@@ -339,7 +331,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "oraclelinux:7",
@@ -376,7 +367,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "oraclelinux:7",
@@ -413,7 +403,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "oraclelinux:8",
@@ -450,7 +439,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "oraclelinux:8",
@@ -487,7 +475,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "oraclelinux:9",
@@ -524,7 +511,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken --exclude milter $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "oraclelinux:9",
@@ -561,7 +547,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "almalinux:8",
@@ -598,7 +583,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "almalinux:8",
@@ -635,7 +619,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "almalinux:9",
@@ -672,7 +655,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "almalinux:9",
@@ -709,7 +691,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "rockylinux:8",
@@ -746,7 +727,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "rockylinux:8",
@@ -783,7 +763,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "rockylinux:9",
@@ -820,7 +799,6 @@
             "bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado\"",
             "git clone https://github.com/rspamd/rspamd.git",
             "bash -c 'cd $DRONE_WORKSPACE/rspamd && COMMIT_HASH=`rpm -q rspamd | sed 's/rspamd-//g' | sed 's/-.*//g'` && git reset --hard $${COMMIT_HASH}'\n",
-            "bash -c 'cd $DRONE_WORKSPACE/rspamd &&\ngit cherry-pick 68ac686a4eb5e7b6704d90fdbd1ab23c6f3fe79e &&\ngit cherry-pick 35636715e70a1a1469911e4295708536360ca8f3 &&\ngit cherry-pick 80a16124fbc6af2245231b8c2d03bea4182c181d &&\ngit cherry-pick d2fbce7dd9931431a4446e05aff8fba89b36d875 &&\ngit cherry-pick 12e835dd8c2be2488af43c2cdf65d23774f84b53 &&\ngit cherry-pick ca78b09ba291c702707ac24923e53e153f4e9a11 &&\ngit apply $DRONE_WORKSPACE/patch1.diff &&\ngit apply $DRONE_WORKSPACE/patch2.diff'\n",
             "RSPAMD_INSTALLROOT=/usr bash -c \"source $DRONE_WORKSPACE/venv/bin/activate && umask 0000 && robot --variable RSPAMD_GROUP:nobody --removekeywords wuks --exclude isbroken $DRONE_WORKSPACE/rspamd/test/functional/cases\""
          ],
          "image": "rockylinux:9",
