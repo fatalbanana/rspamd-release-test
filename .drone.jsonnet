@@ -65,7 +65,7 @@ local test_deps_el = [
 local test_preparation_generic = [
   'python3 -mvenv $DRONE_WORKSPACE/venv',
   'bash -c "source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: setuptools==57.5.0"',  // https://github.com/dmeranda/demjson/issues/43
-  'bash -c "source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework tornado"',
+  'bash -c "source $DRONE_WORKSPACE/venv/bin/activate && pip3 install --no-cache --disable-pip-version-check --no-binary :all: demjson psutil requests robotframework==6.1.1 tornado"',
   'git clone https://github.com/rspamd/rspamd.git',
 ];
 
